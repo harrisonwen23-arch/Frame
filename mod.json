@@ -5,30 +5,30 @@
 	},
 	"id": "harrison.frame-window",
 	"name": "Frame Window Counter",
-	"version": "v1.0.0",
+	"version": "v2.0.0",
 	"developer": "harrison",
-	"description": "Auto-places practice checkpoints before each click and shows how many ticks (frames) your click has to work. Experimental.",
+	"description": "Record a macro, then measure how many ticks (frames) each click can be moved early or late before you die. Experimental.",
 	"settings": {
 		"enabled": {
 			"type": "bool",
 			"name": "Enabled",
 			"default": true
 		},
-		"lookback": {
+		"range": {
 			"type": "int",
-			"name": "Checkpoint lookback (ticks)",
-			"description": "How many ticks before your click the checkpoint is taken. The test covers this many ticks either side of your click.",
-			"default": 12,
-			"min": 4,
-			"max": 40,
+			"name": "Test range (± ticks)",
+			"description": "Each click is shifted from -range to +range ticks. Bigger is slower.",
+			"default": 6,
+			"min": 2,
+			"max": 20,
 			"control": { "slider": true }
 		},
-		"after-release": {
+		"after": {
 			"type": "int",
-			"name": "Survive after release (ticks)",
-			"description": "How long after your click a test run must survive to count as a pass.",
-			"default": 30,
-			"min": 10,
+			"name": "Survive after next click (ticks)",
+			"description": "How long a shifted run must survive past the next click to count as a pass.",
+			"default": 20,
+			"min": 5,
 			"max": 120,
 			"control": { "slider": true }
 		}
