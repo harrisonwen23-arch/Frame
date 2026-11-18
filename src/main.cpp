@@ -57,7 +57,7 @@ class $modify(FWBaseLayer, GJBaseGameLayer) {
         auto arr = pl->m_checkpointArray;
         if (g_lastAuto && arr && arr->count() > 0 &&
             arr->lastObject() == static_cast<CCObject*>(g_lastAuto.data())) {
-            pl->removeLastCheckpoint();
+            arr->removeLastObject();
         }
         pl->storeCheckpoint(pick->cp);
         g_lastAuto = pick->cp;
