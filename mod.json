@@ -1,0 +1,36 @@
+{
+	"geode": "5.11.2",
+	"gd": {
+		"android": "2.2081"
+	},
+	"id": "harrison.frame-window",
+	"name": "Frame Window Counter",
+	"version": "v1.0.0",
+	"developer": "harrison",
+	"description": "Auto-places practice checkpoints before each click and shows how many ticks (frames) your click has to work. Experimental.",
+	"settings": {
+		"enabled": {
+			"type": "bool",
+			"name": "Enabled",
+			"default": true
+		},
+		"lookback": {
+			"type": "int",
+			"name": "Checkpoint lookback (ticks)",
+			"description": "How many ticks before your click the checkpoint is taken. The test covers this many ticks either side of your click.",
+			"default": 12,
+			"min": 4,
+			"max": 40,
+			"control": { "slider": true }
+		},
+		"after-release": {
+			"type": "int",
+			"name": "Survive after release (ticks)",
+			"description": "How long after your click a test run must survive to count as a pass.",
+			"default": 30,
+			"min": 10,
+			"max": 120,
+			"control": { "slider": true }
+		}
+	}
+}
