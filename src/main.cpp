@@ -10,7 +10,7 @@ using namespace geode::prelude;
 
 struct Ev { int tick; bool down; };
 struct Click { int pi; int ri; int press; int release; }; // indices into macro, ri = -1 if never released
-struct Result { int click; int press; int window; int early; int late; bool plus; bool desync; };
+struct WindowResult { int click; int press; int window; int early; int late; bool plus; bool desync; };
 
 static std::vector<Ev> g_rec;    // macro being recorded
 static std::vector<Ev> g_macro;  // saved macro
@@ -384,11 +384,11 @@ class $modify(FWPlayLayer, PlayLayer) {
         J.active = false;
         this->resetLevel();
 
-        std::vector<Result> res;
+        std::vector<WindowResult> res;
         for (size_t i = 0; i < J.clicks.size(); i++) {
             if (!J.snaps[i]) continue;
             auto& p = J.pass[i];
-            Result r{static_cast<int>(i) + 1, J.clicks[i].press, 0, 0, 0, false, false};
+            WindowResult r{static_cast<int>(i) + 1, J.clicks[i].press, 0, 0, 0, false, false};
             if (p[J.K] != 1) {
                 r.desync = true;
                 res.push_back(r);
@@ -409,7 +409,7 @@ class $modify(FWPlayLayer, PlayLayer) {
             return;
         }
 
-        std::sort(res.begin(), res.end(), [](Result const& a, Result const& b) {
+        std::sort(res.begin(), res.end(), [](WindowResult const& a, WindowResult const& b) {
             if (a.desync != b.desync) return a.desync;
             return a.window < b.window;
         });
