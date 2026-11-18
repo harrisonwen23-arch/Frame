@@ -66,9 +66,9 @@ static std::vector<Click> buildClicks(std::vector<Ev> const& m) {
 
 class $modify(FWBase, GJBaseGameLayer) {
     // One call per physics tick: this is the macro clock.
-    void processCommands(float dt) {
-        GJBaseGameLayer::processCommands(dt);
-        g_tick++;
+    void processCommands(float dt, bool isHalfTick, bool isLastTick) {
+        GJBaseGameLayer::processCommands(dt, isHalfTick, isLastTick);
+        if (!isHalfTick) g_tick++;
     }
 
     void handleButton(bool down, int button, bool isPlayer1) {
